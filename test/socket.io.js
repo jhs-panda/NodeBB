@@ -69,6 +69,30 @@ describe('socket.io', () => {
         }
     });
 
+    it('should throw an error if data is invalid for socketModules.chats.loadRoom', async () => {
+        try {
+            await socketModules.chats.loadRoom({}, null);
+        } catch (err) {
+            assert.strictEqual(err.message, '[[error:invalid-data]]');
+        }
+    });
+
+    it('should throw an error if data is invalid for socketModules.chats.getUsersInRoom', async () => {
+        try {
+            await socketModules.chats.getUsersInRoom({}, null);
+        } catch (err) {
+            assert.strictEqual(err.message, '[[error:invalid-data]]');
+        }
+    });
+
+    it('should throw an error if data is invalid for socketModules.chats.addUserToRoom', async () => {
+        try {
+            await socketModules.chats.addUserToRoom({}, null);
+        } catch (err) {
+            assert.strictEqual(err.message, '[[error:invalid-data]]');
+        }
+    });
+
     it('should connect and auth properly', (done) => {
         request.get({
             url: `${nconf.get('url')}/api/config`,
