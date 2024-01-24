@@ -25,6 +25,8 @@ const events = require('../src/events');
 
 const socketAdmin = require('../src/socket.io/admin');
 
+const socketModules = require('../src/socket.io/modules');
+
 describe('socket.io', () => {
     let io;
     let cid;
@@ -51,6 +53,13 @@ describe('socket.io', () => {
         cid = data[2].cid;
     });
 
+    it('should throw an error if data is invalid for socketModules.chats.newRoom', async () => {
+        try {
+            await socketModules.chats.newRoom({}, null);
+        } catch (err) {
+            assert.strictEqual(err.message, '[[error:invalid-data]]');
+        }
+    });
 
     it('should connect and auth properly', (done) => {
         request.get({
