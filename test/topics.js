@@ -57,6 +57,14 @@ describe('Topic\'s', () => {
         };
     });
 
+    it('should throw an error if data is invalid', async () => {
+        try {
+            await socketTopics.move({}, null);
+        } catch (err) {
+            assert.strictEqual(err.message, '[[error:invalid-data]]');
+        }
+    });
+
     describe('.post', () => {
         it('should fail to create topic with invalid data', async () => {
             try {
