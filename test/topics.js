@@ -57,9 +57,17 @@ describe('Topic\'s', () => {
         };
     });
 
-    it('should throw an error if data is invalid', async () => {
+    it('should throw an error if data is invalid for socketTopics.move', async () => {
         try {
             await socketTopics.move({}, null);
+        } catch (err) {
+            assert.strictEqual(err.message, '[[error:invalid-data]]');
+        }
+    });
+
+    it('should throw an error if data is invalid for socketTopics.moveAll', async () => {
+        try {
+            await socketTopics.moveAll({}, null);
         } catch (err) {
             assert.strictEqual(err.message, '[[error:invalid-data]]');
         }
