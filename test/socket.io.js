@@ -61,6 +61,14 @@ describe('socket.io', () => {
         }
     });
 
+    it('should throw an error if data is invalid for socketModules.chats.send', async () => {
+        try {
+            await socketModules.chats.send({}, null);
+        } catch (err) {
+            assert.strictEqual(err.message, '[[error:invalid-data]]');
+        }
+    });
+
     it('should connect and auth properly', (done) => {
         request.get({
             url: `${nconf.get('url')}/api/config`,
